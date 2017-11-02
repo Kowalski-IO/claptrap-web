@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.claptrap-logo {
+    height: 400px;
+    margin-top: 20rem;
+}
+
+
+.full-height {
+    height: 100%;
+}
+
+.environment-list {
+    overflow-y: scroll;
+    padding-top: 1.4rem;
+}
+
+.environment-square {
+    background-color: #fff;
+    height: 50px;
+    width: 50px;
+    opacity: .8;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.environment-square-selected {
+    border: solid 1px #9f53c6;
+    opacity: 1;
+}
+
+.environment-square h1 {
+    padding-top: 7px;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.email-list {
+    overflow-y: scroll;
+    padding-left: 0;
+    padding-right: 0;
+}
