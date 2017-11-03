@@ -22,9 +22,10 @@ html, body {
     background-color: #fff;
     height: 50px;
     width: 50px;
-    opacity: .8;
+    opacity: .7;
     margin-bottom: 20px;
     text-align: center;
+    cursor: pointer;
 }
 
 .environment-square-selected {
@@ -42,4 +43,39 @@ html, body {
     overflow-y: scroll;
     padding-left: 0;
     padding-right: 0;
+}
+
+.email-list-item {
+    cursor: pointer;
+    border-radius: 0 !important;
+}
+
+.email-list-item:hover {
+    background-color: #f8f8f8;
+}
+
+.email-list-item-selected {
+    background-color: rgba(0, 123, 255, 0.20);
+}
+
+.email-list-item-selected:hover {
+    background-color: rgba(0, 123, 255, 0.20);
+}
+
+.email-viewer-header {
+    border-bottom: #000 solid 1px;
+}
+
+.email-viewer-iframe {
+    border: none !important;
+    width: 100%;
+    height: 100%;
+}
+
+ul.contacts li:after {
+    content: ", ";
+}
+
+ul.contacts li:last-child:after {
+    content: "";
 }

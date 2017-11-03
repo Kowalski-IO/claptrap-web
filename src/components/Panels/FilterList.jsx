@@ -29,7 +29,7 @@ const FilterList = observer(class FilterList extends Component {
             let filters = this.props.storage.filtersForEnvironment;
 
             let filterToggles = filters.map((filter, i) =>
-                <button key={filter['id']}
+                <button key={filter['id']} onClick={() => {this.props.storage.setSelectedFilter(filter)}}
                         className={this.buildToggleClassList(filter)}>{filter.name}</button>
             )
 

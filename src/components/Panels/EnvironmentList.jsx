@@ -14,7 +14,10 @@ const EnvironmentList = observer(class EnvironmentList extends Component {
     }
 
     selectEnvironment = (environment) => {
-        this.props.storage.setSelectedEnvironment(environment);
+        if (environment !== this.props.storage.selectedEnvironment) {
+            this.props.storage.setSelectedEnvironment(environment);
+            this.props.storage.setSelectedEmail(undefined);
+        }
     };
 
     componentDidMount() {

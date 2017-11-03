@@ -5,6 +5,7 @@ import {observer} from 'mobx-react';
 import Truncate from 'react-truncate';
 import moment from 'moment';
 import Settings from "../../Settings";
+import classNames from "classnames";
 
 const EmailList = observer(class EmailList extends Component {
 
@@ -25,6 +26,11 @@ const EmailList = observer(class EmailList extends Component {
         loadEmails() {
             let apiEndpoint = Settings.getAPIRoot() + 'emails?environment='
                 + this.props.storage.selectedEnvironment;
+
+            this.setState({
+                emails: []
+            });
+
             fetch(apiEndpoint)
                 .then(response => response.json())
                 .then(json => {
@@ -38,7 +44,7 @@ const EmailList = observer(class EmailList extends Component {
             let now = moment();
             let parsed = moment(emailDate);
             if (now.isSame(emailDate, 'day')) {
-                return parsed.format("h:mm a");
+                return parsed.format("h:mm A");
             } else if (!now.isSame(emailDate, 'year')) {
                 return parsed.format("MMM D, YYYY");
             } else {
@@ -46,10 +52,27 @@ const EmailList = observer(class EmailList extends Component {
             }
         }
 
-        render() {
+        selectEmail(email) {
+            if (email !== this.props.storage.selectedEmail) {
+                this.props.storage.setSelectedEmail(email);
+            }
+        }
 
-            let listItems = this.state.emails.map((email) =>
-                <div key={email.id} className="card">
+        buildEmailCardClassList(email) {
+            return classNames(
+                'card',
+                'email-list-item',
+                {
+                    'email-list-item-selected': this.props.storage.selectedEmail !== undefined && this.props.storage.selectedEmail.id === email.id
+                }
+            );
+        }
+
+        render() {
+            let emails = this.state.emails.map((email) =>
+                <div key={email.id} className={this.buildEmailCardClassList(email)} onClick={() => {
+                    this.selectEmail(email)
+                }}>
                     <div className="card-body">
                         <div className="clearfix">
                             <h5 className="card-title float-left"
@@ -65,11 +88,10 @@ const EmailList = observer(class EmailList extends Component {
             return (
                 <div
                     className="col-4 bg-light border border-dark border-top-0 border-bottom-0 border-left-0 full-height email-list">
-                    {listItems}
+                    {emails}
                 </div>
             )
         }
     })
 ;
-
 export default EmailList;
