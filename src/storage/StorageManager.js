@@ -3,25 +3,21 @@ import * as mobx from 'mobx';
 mobx.useStrict(true);
 
 const defaultFilter = {
-    "id" : "default",
+    "id" : "_default",
     "name" : "no filter",
     "contig" : {}
-}
+};
 
 class StorageManager {
     constructor() {
         this.localStorage = window.localStorage;
         this.savedFilters = {
-            "kowalski.io" : [
+            "fancy.io" : [
                 {
-                    "id": "abc123",
-                    "environment" : "kowalski.io",
+                    "id": "fancy.io:fancy_filter",
+                    "environment" : "fancy.io",
                     "name": "fancy filter",
-                    "config": {
-                        "to": [
-                            "brandon@kowalski.org"
-                        ]
-                    }
+                    "config": {"condition":"OR","rules":[{"id":"subject","field":"subject","operator":"contains","value":"95"}],"valid":true}
                 }
             ]
         };
@@ -30,6 +26,9 @@ class StorageManager {
             selectedEnvironment: undefined,
             selectedFilter: undefined,
             selectedEmail: undefined,
+            selectedViewerMode: undefined,
+
+            emails: [],
 
             setSelectedEnvironment: mobx.action(function(environment) {
                 this.selectedEnvironment = environment;
@@ -38,15 +37,28 @@ class StorageManager {
 
             setSelectedFilter: mobx.action(function(filter) {
                 this.selectedFilter = filter;
+                this.selectedEmail = undefined;
             }),
 
             setSelectedEmail: mobx.action(function(email) {
                 this.selectedEmail = email;
+                this.selectedViewerMode = 'PLAIN';
+            }),
+
+            setSelectedViewerMode: mobx.action(function(mode) {
+               this.selectedViewerMode = mode;
+            }),
+
+            setEmails: mobx.action(function(emails) {
+                this.emails = emails;
+            }),
+
+            removeEmail: mobx.action(function(email) {
+                this.emails = this.emails.filter(item => item !== email);
             }),
 
             filtersForEnvironment: mobx.computed(function() {
                 let filters = [];
-                filters.push(defaultFilter);
 
                 if (this.savedFilters[this.selectedEnvironment] != null) {
                     filters = filters.concat(this.savedFilters[this.selectedEnvironment]);
@@ -77,4 +89,4 @@ class StorageManager {
 
 }
 
-export { StorageManager };
+export { StorageManager, defaultFilter };

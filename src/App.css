@@ -3,6 +3,13 @@ html, body {
     overflow: hidden;
 }
 
+.btn-info:not([disabled]):not(.disabled):active,
+.btn-info:not([disabled]):not(.disabled).active,
+.show>.btn-info.dropdown-toggle {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 .claptrap-logo {
     height: 400px;
     margin-top: 20rem;
@@ -40,6 +47,7 @@ html, body {
 }
 
 .email-list {
+    border-right: 2px solid #424242;
     overflow-y: scroll;
     padding-left: 0;
     padding-right: 0;
@@ -55,21 +63,29 @@ html, body {
 }
 
 .email-list-item-selected {
-    background-color: rgba(0, 123, 255, 0.20);
+    background-color: rgba(66, 66, 66, 0.05);
 }
 
 .email-list-item-selected:hover {
-    background-color: rgba(0, 123, 255, 0.20);
+    background-color: rgba(66, 66, 66, 0.05);
+}
+
+.card-body:first-child {
+    padding-top: 20px !important;
 }
 
 .email-viewer-header {
-    border-bottom: #000 solid 1px;
+    border-bottom: #424242 solid 1px;
 }
 
 .email-viewer-iframe {
     border: none !important;
     width: 100%;
     height: 100%;
+}
+
+.table .thead-dark th {
+    background-color: #593196;
 }
 
 ul.contacts li:after {

@@ -61,7 +61,7 @@ const EnvironmentList = observer(class EnvironmentList extends Component {
         );
 
         return (
-            <div className="col-1 bg-primary full-height environment-list">
+            <div className="col-sm-auto bg-primary full-height environment-list">
                 {environments}
             </div>
         )

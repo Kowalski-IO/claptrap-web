@@ -4,11 +4,16 @@ import {StorageManager} from './storage/StorageManager';
 
 import EnvironmentList from './components/Panels/EnvironmentList';
 import FilterList from './components/Panels/FilterList';
+import FilterLibrary from './components/Panels/FilterLibrary';
 import EmailList from './components/Panels/EmailList';
 import EmailViewer from './components/Panels/EmailViewer';
 
-import './styles/bootstap-4-custom.css';
+import './styles/pulse.css';
 import './App.css';
+
+import 'jquery';
+import 'popper.js';
+import 'bootstrap/dist/js/bootstrap';
 
 const store = new StorageManager();
 
@@ -20,6 +25,7 @@ class App extends Component {
 
                     <EnvironmentList storage={store}/>
                     <FilterList storage={store}/>
+                    <FilterLibrary storage={store}/>
                     <EmailList storage={store}/>
                     <EmailViewer storage={store}/>
 
